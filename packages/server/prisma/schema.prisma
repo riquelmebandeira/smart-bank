@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  username  String  @unique @db.VarChar(255)
+  password  String  @db.VarChar(255)
+  account   Account @relation(fields: [accountId], references: [id])
+  accountId Int     @unique
+
+  @@map("users")
+}
+
+model Account {
+  id       Int           @id @default(autoincrement())
+  balance  Float
+  debited  Transaction[] @relation("debited")
+  credited Transaction[] @relation("credited")
+  User     User?
+
+  @@map("accounts")
+}
+
+model Transaction {
+  id                Int      @id @default(autoincrement())
+  debitedAccount    Account  @relation("debited", fields: debitedAccountId, references: [id])
+  debitedAccountId  Int
+  creditedAccount   Account  @relation("credited", fields: creditedAccountId, references: [id])
+  creditedAccountId Int
+  value             Float
+  createdAt         DateTime @default(now())
+
+  @@map("transactions")
+}
