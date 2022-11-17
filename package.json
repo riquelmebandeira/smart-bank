@@ -16,6 +16,8 @@
   ],
   "devDependencies": {
     "@desafio-ng/eslint-config": "*",
+    "@types/jest": "^29.2.3",
+    "@types/node": "^18.11.9",
     "dotenv": "^16.0.3"
   },
   "dependencies": {
