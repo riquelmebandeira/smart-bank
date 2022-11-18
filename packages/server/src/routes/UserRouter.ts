@@ -1,9 +1,9 @@
 import { Router } from 'express'
 import UserController from '../controllers/UserController'
-import validateRegisterData from '../middlewares/validateRegisterData'
+import validateCredentials from '../middlewares/validateCredentials'
 
 const userRouter = Router()
 
-userRouter.post('/user', validateRegisterData, UserController.register)
+userRouter.post('/user', validateCredentials, UserController.register)
 
 export default userRouter
