@@ -28,8 +28,6 @@ module.exports = {
       { singleQuote: true },
       { singleAttributePerLine: true }
     ],
-    'space-before-function-paren': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -37,7 +35,10 @@ module.exports = {
         varsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_'
       }
-    ]
+    ],
+    'space-before-function-paren': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'no-sequences': 'off'
   },
   settings: {
     'import/resolver': {
