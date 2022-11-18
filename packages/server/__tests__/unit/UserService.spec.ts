@@ -71,4 +71,22 @@ describe('UserService', () => {
       InvalidCredentialsError
     )
   })
+
+  it('should be able to return user data', async () => {
+    const mockData = {
+      id: 1,
+      username: 'john',
+      balance: 100
+    } as any
+
+    prismaMock.user.findUnique.mockResolvedValue(mockData)
+
+    const userData = await UserService.getData('john')
+
+    expect(userData).toHaveProperty('id')
+    expect(userData!.username).toBe('john')
+    expect(userData).toHaveProperty('balance')
+    expect(userData).not.toHaveProperty('password')
+    expect(userData).not.toHaveProperty('accountId')
+  })
 })

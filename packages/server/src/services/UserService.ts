@@ -46,6 +46,23 @@ class UserService {
 
     return userInfo
   }
+
+  async getData(username: string) {
+    const data = await prisma.user.findUnique({
+      where: { username },
+      select: {
+        id: true,
+        username: true,
+        account: {
+          select: {
+            balance: true
+          }
+        }
+      }
+    })
+
+    return data
+  }
 }
 
 export default new UserService()

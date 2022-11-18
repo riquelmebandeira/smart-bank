@@ -66,4 +66,21 @@ describe('UserController', () => {
 
     expect(next).toBeCalledWith(InvalidCredentialsError)
   })
+
+  it('should be able to return user data', async () => {
+    const mockUserData = {
+      id: 1,
+      username: 'dummy',
+      account: {
+        balance: 100
+      }
+    }
+
+    UserServiceMock.getData.mockImplementation(async () => mockUserData)
+
+    await UserController.getData(req, res, next)
+
+    expect(res.status).toBeCalledWith(200)
+    expect(res.json).toBeCalledWith(mockUserData)
+  })
 })

@@ -24,6 +24,16 @@ class UserController {
       next(err)
     }
   }
+
+  async getData(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { username } = req.body
+      const data = await UserService.getData(username)
+      return res.status(200).json(data)
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 export default new UserController()
