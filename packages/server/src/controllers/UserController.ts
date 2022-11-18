@@ -13,6 +13,17 @@ class UserController {
       next(err)
     }
   }
+
+  async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { username, password } = req.body
+      const user = await UserService.login(username, password)
+      const token = generateJWT(user)
+      return res.status(200).json(token)
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 export default new UserController()

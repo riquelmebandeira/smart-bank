@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
 import UserController from '../../src/controllers/UserController'
 import UserService from '../../src/services/UserService'
-import { UserConflictError } from '../../src/utils/errors'
+import {
+  InvalidCredentialsError,
+  UserConflictError
+} from '../../src/utils/errors'
 import { mockRequest, mockResponse } from '../utils'
 jest.mock('../../src/services/UserService')
 
@@ -40,5 +43,27 @@ describe('UserController', () => {
     await UserController.register(req, res, next)
 
     expect(next).toBeCalledWith(UserConflictError)
+  })
+
+  it('should be able to login and respond with status 200 and JWT', async () => {
+    UserServiceMock.login.mockImplementation(async () => ({
+      id: 1,
+      username: 'dummy'
+    }))
+
+    await UserController.login(req, res, next)
+
+    expect(res.status).toBeCalledWith(200)
+    expect(res.json).toBeDefined()
+  })
+
+  it('should call next with error when login invalid credentials', async () => {
+    UserServiceMock.login.mockImplementation(() => {
+      throw InvalidCredentialsError
+    })
+
+    await UserController.login(req, res, next)
+
+    expect(next).toBeCalledWith(InvalidCredentialsError)
   })
 })

@@ -1,6 +1,6 @@
 import prisma from '../database/prismaClient'
 import md5 from 'md5'
-import { UserConflictError } from '../utils/errors'
+import { InvalidCredentialsError, UserConflictError } from '../utils/errors'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime'
 
 class UserService {
@@ -31,6 +31,20 @@ class UserService {
       }
       throw err
     }
+  }
+
+  async login(username: string, password: string) {
+    const user = await prisma.user.findUnique({ where: { username } })
+
+    if (!user) throw InvalidCredentialsError
+
+    const hashedPassword = md5(password)
+
+    if (user.password !== hashedPassword) throw InvalidCredentialsError
+
+    const { password: _password, accountId: _accountId, ...userInfo } = user
+
+    return userInfo
   }
 }
 
