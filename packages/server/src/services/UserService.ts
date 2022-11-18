@@ -4,10 +4,7 @@ import { UserConflictError } from '../utils/errors'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime'
 
 class UserService {
-  public async register(
-    username: string,
-    password: string
-  ): Promise<any | typeof UserConflictError> {
+  public async register(username: string, password: string) {
     try {
       const hashedPassword = md5(password)
 
