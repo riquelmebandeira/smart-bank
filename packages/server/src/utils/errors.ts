@@ -12,4 +12,9 @@ export const UserConflictError = new CustomError(
   409
 )
 
+export const InvalidCredentialsError = new CustomError(
+  'Invalid username or password.',
+  200
+)
+
 export default CustomError
