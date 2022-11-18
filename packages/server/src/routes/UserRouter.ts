@@ -4,6 +4,6 @@ import validateCredentials from '../middlewares/validateCredentials'
 
 const userRouter = Router()
 
-userRouter.post('/user', validateCredentials, UserController.register)
+userRouter.post('/register', validateCredentials, UserController.register)
 
 export default userRouter
