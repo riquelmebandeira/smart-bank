@@ -24,7 +24,7 @@ model Account {
   balance  Float
   debited  Transaction[] @relation("debited")
   credited Transaction[] @relation("credited")
-  User     User?
+  user     User?
 
   @@map("accounts")
 }
