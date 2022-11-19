@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import TransactionService from '../services/TransactionService'
+import UserService from '../services/UserService'
 
 class TransactionController {
   async makeTransaction(req: Request, res: Response, next: NextFunction) {
@@ -7,9 +8,18 @@ class TransactionController {
       const { value, creditedUsername } = req.body
       const { username: debitedUsername } = req.currentUser
 
+      const debitedUser = await UserService.getData(debitedUsername)
+      const creditedUser = await UserService.getData(creditedUsername)
+
+      if (!creditedUser) {
+        return res
+          .status(404)
+          .json({ error: 'The user to be credited does not exist.' })
+      }
+
       const transaction = await TransactionService.makeTransaction(
-        debitedUsername,
-        creditedUsername,
+        debitedUser!,
+        creditedUser,
         value
       )
 
