@@ -7,7 +7,7 @@ const errorMiddleware = (
   res: Response,
   _next: NextFunction
 ): Response | void => {
-  console.log(error instanceof CustomError)
+  console.log(error)
 
   if (error instanceof CustomError) {
     return res.status(error.code).json({ error: error.message })
