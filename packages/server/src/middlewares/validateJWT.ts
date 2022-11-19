@@ -24,7 +24,7 @@ const validateJWT = async (
 
     if (!user) return res.status(404).json({ message: 'User not found' })
 
-    req.body = user
+    req.currentUser = user
 
     next()
   } catch (err) {

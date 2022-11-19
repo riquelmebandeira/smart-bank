@@ -4,6 +4,11 @@
     "outDir": "dist",
     "strict": true,
     "lib": ["esnext"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": [
+      "@types",
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ]
   }
 }
