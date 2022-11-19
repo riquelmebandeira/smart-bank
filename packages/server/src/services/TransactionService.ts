@@ -40,6 +40,16 @@ class TransactionService {
       updateCreditedAcc
     ])
   }
+
+  async getTransactions(accountId: number, category: string) {
+    return prisma.account.findUnique({
+      where: { id: accountId },
+      include: {
+        debited: !category || category === 'debited',
+        credited: !category || category === 'credited'
+      }
+    })
+  }
 }
 
 export default new TransactionService()
