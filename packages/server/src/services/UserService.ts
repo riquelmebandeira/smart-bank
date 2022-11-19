@@ -53,6 +53,7 @@ class UserService {
       select: {
         id: true,
         username: true,
+        accountId: true,
         account: {
           select: {
             balance: true

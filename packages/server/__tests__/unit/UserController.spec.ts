@@ -71,6 +71,7 @@ describe('UserController', () => {
     const mockUserData = {
       id: 1,
       username: 'dummy',
+      accountId: 1,
       account: {
         balance: 100
       }
