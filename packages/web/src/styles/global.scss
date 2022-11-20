@@ -1,0 +1,68 @@
+@use './mixins';
+
+:root {
+  --color-gray-1: #f5f5f5;
+  --color-gray-2: #e0e0e0;
+  --color-gray-3: #cccccc;
+  --color-gray-4: #b8b8b8;
+  --color-gray-5: #a3a3a3;
+  --color-gray-6: #8f8f8f;
+  --color-gray-7: #7a7a7a;
+  --color-gray-8: #666666;
+  --color-gray-9: #525252;
+  --color-gray-10: #3d3d3d;
+  --color-gray-11: #292929;
+  --color-gray-12: #141414;
+
+  --color-purple-1: #ed9dff;
+  --color-purple-2: #e387ff;
+  --color-purple-3: #d575f4;
+  --color-purple-4: #c06cf3;
+  --color-purple-5: #b056e8;
+  --color-purple-6: #9b39d7;
+  --color-purple-7: #8c2bc8;
+  --color-purple-8: #781bb1;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; //1 rem = 10px;
+
+  @include mixins.respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //1 rem = 9px
+  }
+
+  @include mixins.respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //1 rem = 8px
+  }
+
+  @include mixins.respond(big-desktop) {
+    font-size: 75%; //1rem = 12
+  }
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+::selection {
+  background-color: var(--color-purple-4);
+  color: var(--color-gray-1);
+}
+
+.mt-xsmall {
+  margin-top: 2.5rem;
+}
+.mt-small {
+  margin-top: 3rem;
+}
