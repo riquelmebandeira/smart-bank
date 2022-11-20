@@ -1,0 +1,23 @@
+.form__control {
+  label {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #141414;
+  }
+
+  input {
+    width: 100%;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.6rem;
+    height: 3.7rem;
+    text-indent: 1.5rem;
+    margin-top: 0.5rem;
+
+    &::placeholder {
+      color: #7a7a7a;
+      opacity: 1;
+    }
+  }
+}
