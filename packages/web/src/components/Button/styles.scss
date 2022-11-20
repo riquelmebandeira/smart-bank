@@ -1,0 +1,16 @@
+.button {
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.6rem;
+  border-radius: 2px;
+
+  &__primary {
+    background-color: #9b39d7;
+    color: white;
+    border: none;
+    font-weight: 700;
+    width: 100%;
+    height: 3.7rem;
+    box-shadow: 0 2px 2px #cccccc;
+  }
+}
