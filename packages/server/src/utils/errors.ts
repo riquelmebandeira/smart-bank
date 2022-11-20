@@ -14,7 +14,7 @@ export const UserConflictError = new CustomError(
 
 export const InvalidCredentialsError = new CustomError(
   'Invalid username or password.',
-  200
+  401
 )
 
 export default CustomError
