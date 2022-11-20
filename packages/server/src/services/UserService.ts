@@ -2,6 +2,7 @@ import prisma from '../database/prismaClient'
 import md5 from 'md5'
 import { InvalidCredentialsError, UserConflictError } from '../utils/errors'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime'
+import { UserWithBalance } from '../database/types'
 
 class UserService {
   public async register(username: string, password: string) {
@@ -47,8 +48,8 @@ class UserService {
     return userInfo
   }
 
-  async getData(username: string) {
-    const data = await prisma.user.findUnique({
+  async getData(username: string): Promise<UserWithBalance | null> {
+    return await prisma.user.findUnique({
       where: { username },
       select: {
         id: true,
@@ -61,8 +62,6 @@ class UserService {
         }
       }
     })
-
-    return data
   }
 }
 

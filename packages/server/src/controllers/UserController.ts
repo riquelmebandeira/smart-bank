@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import UserService from '../services/UserService'
 import { generateJWT } from '../utils/generateJWT'
+import { serializeUserData } from '../utils/serializeUserData'
 
 class UserController {
   async register(req: Request, res: Response, next: NextFunction) {
@@ -29,7 +30,8 @@ class UserController {
     try {
       const { username } = req.currentUser
       const data = await UserService.getData(username)
-      return res.status(200).json(data)
+      const serialized = serializeUserData(data!)
+      return res.status(200).json(serialized)
     } catch (err) {
       next(err)
     }
