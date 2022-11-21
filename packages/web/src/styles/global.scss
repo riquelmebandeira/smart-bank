@@ -22,6 +22,8 @@
   --color-purple-6: #9b39d7;
   --color-purple-7: #8c2bc8;
   --color-purple-8: #781bb1;
+
+  --color-red: #d73939;
 }
 
 *,
@@ -65,4 +67,10 @@ body {
 }
 .mt-small {
   margin-top: 3rem;
+}
+
+.error-feedback {
+  color: var(--color-red);
+  font-size: 1.6rem;
+  font-weight: 400;
 }
