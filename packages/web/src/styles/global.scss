@@ -57,6 +57,11 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: var(--color-gray-12);
+}
+
 ::selection {
   background-color: var(--color-purple-4);
   color: var(--color-gray-1);
