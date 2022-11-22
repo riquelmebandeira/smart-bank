@@ -11,6 +11,7 @@ export type UserData = {
 export interface IUserContext {
   sign: (a: 'login' | 'register', b: string, c: string) => Promise<void>
   userLogout: () => Promise<void>
+  getUser: (token: string) => Promise<void>
   data: UserData | null
   error: null | string
   loading: boolean
@@ -93,7 +94,7 @@ export const UserStorage = ({ children }: UserStorageProps) => {
 
   return (
     <UserContext.Provider
-      value={{ sign, userLogout, data, error, loading, signed }}
+      value={{ sign, userLogout, data, error, loading, signed, getUser }}
     >
       {children}
     </UserContext.Provider>

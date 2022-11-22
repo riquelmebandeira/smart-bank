@@ -28,6 +28,20 @@ export const getUserData = async (token: string): Promise<UserData> => {
   return response.data
 }
 
+export const makeTransaction = async (
+  creditedUsername: string,
+  value: number,
+  token: string
+): Promise<string> => {
+  const response = await api.post(
+    '/transaction',
+    { creditedUsername, value },
+    { headers: { authorization: token } }
+  )
+
+  return response.data
+}
+
 export const validateToken = async (token: string): Promise<UserData> => {
   const response = await api.get('/validate', {
     headers: { authorization: token }

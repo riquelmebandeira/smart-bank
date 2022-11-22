@@ -3,7 +3,7 @@ import './styles.scss'
 type FormControlProps = {
   id: string
   type: string
-  placeholder: string
+  placeholder?: string
   className?: string
   text: string
   value: string
