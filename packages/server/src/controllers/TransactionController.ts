@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express'
-import prisma from '../database/prismaClient'
 import TransactionService from '../services/TransactionService'
 import UserService from '../services/UserService'
 import { filterTransactionsByDate } from '../utils/filterTransactionsByDate'
@@ -34,20 +33,19 @@ class TransactionController {
 
   async getTransactions(req: Request, res: Response, next: NextFunction) {
     try {
-      const { accountId } = req.currentUser
+      const { accountId, username } = req.currentUser
       const { category, date } = req.query
 
-      const transactions = await TransactionService.getTransactions(
+      let transactions = await TransactionService.getTransactions(
         accountId,
         category as string
       )
 
-      const serialized = serializeTransactions(transactions!)
-
       if (date) {
-        const filtered = filterTransactionsByDate(date as string, serialized)
-        return res.status(200).json(filtered)
+        transactions = filterTransactionsByDate(date as string, transactions)
       }
+
+      const serialized = serializeTransactions(transactions, username)
 
       return res.status(200).json(serialized)
     } catch (err) {

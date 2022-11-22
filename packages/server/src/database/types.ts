@@ -11,15 +11,31 @@ const userWithBalance = Prisma.validator<Prisma.UserArgs>()({
 
 type UserWithBalance = Prisma.UserGetPayload<typeof userWithBalance>
 
-const accountWithTransactions = Prisma.validator<Prisma.AccountArgs>()({
+const transactionsWithDebitedUser = Prisma.validator<Prisma.TransactionArgs>()({
   include: {
-    debited: true,
-    credited: true
+    debitedAccount: {
+      include: {
+        User: {
+          select: {
+            username: true
+          }
+        }
+      }
+    },
+    creditedAccount: {
+      include: {
+        User: {
+          select: {
+            username: true
+          }
+        }
+      }
+    }
   }
 })
 
-type AccountWithTransactions = Prisma.AccountGetPayload<
-  typeof accountWithTransactions
+type TransactionsWithDebitedUser = Prisma.TransactionGetPayload<
+  typeof transactionsWithDebitedUser
 >
 
-export { UserWithBalance, AccountWithTransactions }
+export { UserWithBalance, TransactionsWithDebitedUser }

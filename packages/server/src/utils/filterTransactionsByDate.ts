@@ -1,8 +1,8 @@
-import { Transaction } from '@prisma/client'
+import { TransactionsWithDebitedUser } from '../database/types'
 
 const filterTransactionsByDate = (
   date: string,
-  transactions: Transaction[]
+  transactions: TransactionsWithDebitedUser[]
 ) => {
   return transactions.filter(t => t.createdAt.toLocaleDateString() === date)
 }

@@ -42,12 +42,56 @@ class TransactionService {
   }
 
   async getTransactions(accountId: number, category: string) {
-    return prisma.account.findUnique({
-      where: { id: accountId },
-      include: {
-        debited: !category || category === 'debited',
-        credited: !category || category === 'credited'
+    const include = {
+      debitedAccount: {
+        include: {
+          User: {
+            select: {
+              username: true
+            }
+          }
+        }
+      },
+      creditedAccount: {
+        include: {
+          User: {
+            select: {
+              username: true
+            }
+          }
+        }
       }
+    }
+
+    if (category === 'debited') {
+      return await prisma.transaction.findMany({
+        where: { debitedAccountId: accountId },
+        include,
+        orderBy: { createdAt: 'desc' }
+      })
+    }
+
+    if (category === 'credited') {
+      return await prisma.transaction.findMany({
+        where: { creditedAccountId: accountId },
+        include,
+        orderBy: { createdAt: 'desc' }
+      })
+    }
+
+    return await prisma.transaction.findMany({
+      where: {
+        OR: [
+          {
+            debitedAccountId: accountId
+          },
+          {
+            creditedAccountId: accountId
+          }
+        ]
+      },
+      include,
+      orderBy: { createdAt: 'desc' }
     })
   }
 }
