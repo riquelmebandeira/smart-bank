@@ -67,11 +67,20 @@ a {
   color: var(--color-gray-1);
 }
 
+.mt-tiny {
+  margin-top: 1.5rem;
+}
+.mt-xxsmall {
+  margin-top: 2rem;
+}
 .mt-xsmall {
   margin-top: 2.5rem;
 }
 .mt-small {
   margin-top: 3rem;
+}
+.mt-big {
+  margin-top: 4.5rem;
 }
 
 .error-feedback {
