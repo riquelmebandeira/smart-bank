@@ -30,8 +30,9 @@ const Transactions = (): JSX.Element => {
       <h4>Transações</h4>
 
       <div className="filters mt-xxsmall">
+        <h5>Filtros</h5>
         <select onChange={({ target }) => setCategory(target.value)}>
-          <option value="">Todas</option>
+          <option value="">Categoria</option>
           <option value="debited">Realizadas</option>
           <option value="credited">Recebidas</option>
         </select>
@@ -45,7 +46,7 @@ const Transactions = (): JSX.Element => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="card-list mt-xxsmall">
+        <div className="transactions__list mt-xxsmall">
           {transactions.length < 1 ? (
             <p>Nenhuma transação foi encontrada</p>
           ) : (
