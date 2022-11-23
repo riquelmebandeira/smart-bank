@@ -6,11 +6,11 @@ const serializeTransactions = (
 ) => {
   const serialized = transactions.map(t => ({
     id: t.id,
-    debitedUser: t.debitedAccount.User?.username,
-    creditedUser: t.creditedAccount.User?.username,
+    debitedUser: t.debitedAccount.user?.username,
+    creditedUser: t.creditedAccount.user?.username,
     value: t.value,
     date: new Date(t.createdAt).toLocaleDateString(),
-    received: currentUser !== t.debitedAccount.User?.username
+    received: currentUser !== t.debitedAccount.user?.username
   }))
 
   return serialized

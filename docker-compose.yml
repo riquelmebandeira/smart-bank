@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  web:
+    build: ./packages/web
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+  server:
+    build: ./packages/server
+    restart: always
+    ports:
+      - 3001:3001
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - PORT=3001
+      - JWT_SECRET=secret
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 10s
+      retries: 5
+  database:
+    image: postgres
+    container_name: database
+    user: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+    restart: 'always'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      timeout: 10s
+      retries: 5

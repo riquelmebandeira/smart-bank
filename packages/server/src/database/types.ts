@@ -15,7 +15,7 @@ const transactionsWithDebitedUser = Prisma.validator<Prisma.TransactionArgs>()({
   include: {
     debitedAccount: {
       include: {
-        User: {
+        user: {
           select: {
             username: true
           }
@@ -24,7 +24,7 @@ const transactionsWithDebitedUser = Prisma.validator<Prisma.TransactionArgs>()({
     },
     creditedAccount: {
       include: {
-        User: {
+        user: {
           select: {
             username: true
           }

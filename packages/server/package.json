@@ -4,9 +4,12 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
+    "build": "tsc --build",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start": "ts-node src/server.ts",
-    "test": "jest"
+    "test": "jest",
+    "start:prod": "node dist/src/server.js",
+    "start:migrate:prod": "prisma migrate deploy && npm run start:prod"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
   "dependencies": {
     "@prisma/client": "^4.6.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "joi": "^17.6.4",
     "jsonwebtoken": "^8.5.1",

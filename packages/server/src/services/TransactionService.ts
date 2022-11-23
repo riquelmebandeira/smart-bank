@@ -45,7 +45,7 @@ class TransactionService {
     const include = {
       debitedAccount: {
         include: {
-          User: {
+          user: {
             select: {
               username: true
             }
@@ -54,7 +54,7 @@ class TransactionService {
       },
       creditedAccount: {
         include: {
-          User: {
+          user: {
             select: {
               username: true
             }
