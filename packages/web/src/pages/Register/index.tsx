@@ -55,7 +55,7 @@ const Register = (): JSX.Element => {
               type="text"
               id="username"
               placeholder="Ada"
-              className="mt-xsmall"
+              className="mt-small"
               {...username}
             />
             <FormControl
