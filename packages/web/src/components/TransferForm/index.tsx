@@ -48,18 +48,16 @@ const TransferForm = (): JSX.Element => {
         type="number"
         text="Valor"
         id="username"
-        className="mt-tiny"
+        className="mt-tiny form-control--light"
         placeholder="Digite o valor que deseja transferir"
         {...amount}
       />
-
-      <h4 className="mt-small">Dados de quem vai receber</h4>
 
       <FormControl
         type="text"
         text="Nome de usuário"
         id="username"
-        className="mt-tiny"
+        className="mt-tiny form-control--light"
         placeholder="Digite o nome de usuário"
         {...username}
       />
