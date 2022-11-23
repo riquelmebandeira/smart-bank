@@ -38,6 +38,7 @@ module.exports = {
     ],
     'space-before-function-paren': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-sequences': 'off'
   },
   settings: {
