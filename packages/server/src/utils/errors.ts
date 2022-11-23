@@ -8,12 +8,12 @@ class CustomError extends Error {
 }
 
 export const UserConflictError = new CustomError(
-  'This username has already been taken.',
+  'Este nome de usuário pertence a outra pessoa.',
   409
 )
 
 export const InvalidCredentialsError = new CustomError(
-  'Invalid username or password.',
+  'Nome de usuário ou senha incorretos.',
   401
 )
 

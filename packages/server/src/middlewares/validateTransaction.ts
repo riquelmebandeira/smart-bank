@@ -3,7 +3,7 @@ import Joi from 'joi'
 
 const transactionSchema = Joi.object({
   creditedUsername: Joi.string().required(),
-  value: Joi.number().greater(1).required()
+  value: Joi.number().greater(0).required()
 })
 
 const validateTransaction = (
@@ -15,9 +15,9 @@ const validateTransaction = (
   const { creditedUsername } = req.body
 
   if (creditedUsername.toLowerCase() === debitedUsername.toLowerCase()) {
-    return res
-      .status(403)
-      .json({ message: 'A transaction can only be made to a valid user.' })
+    return res.status(403).json({
+      error: 'Não é possível realizar esta operação.'
+    })
   }
 
   const { error } = transactionSchema.validate(req.body)

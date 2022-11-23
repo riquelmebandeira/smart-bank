@@ -63,7 +63,7 @@ export const UserStorage = ({ children }: UserStorageProps) => {
       navigate('/home')
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        setError(err.message)
+        setError(err.response?.data.error)
         setSigned(false)
       }
     } finally {

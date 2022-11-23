@@ -16,7 +16,7 @@ class TransactionController {
       if (!creditedUser) {
         return res
           .status(404)
-          .json({ error: 'The user to be credited does not exist.' })
+          .json({ error: 'O usuário informado não existe.' })
       }
 
       const transaction = await TransactionService.makeTransaction(

@@ -9,7 +9,7 @@ class TransactionService {
     transactionValue: number
   ) {
     if (debitedUser.account.balance < transactionValue) {
-      throw new CustomError('Insuficient balance.', 401)
+      throw new CustomError('Saldo insuficiente.', 401)
     }
 
     const createTransaction = prisma.transaction.create({

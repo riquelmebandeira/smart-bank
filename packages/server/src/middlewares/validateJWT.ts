@@ -12,7 +12,7 @@ const validateJWT = async (
   const token = req.headers.authorization
 
   if (!token) {
-    return res.status(401).json({ message: 'Token not found.' })
+    return res.status(401).json({ error: 'Token não encontrado.' })
   }
 
   try {
@@ -22,13 +22,13 @@ const validateJWT = async (
 
     const user = await prisma.user.findUnique({ where: { username } })
 
-    if (!user) return res.status(404).json({ message: 'User not found' })
+    if (!user) return res.status(404).json({ error: 'Usuaário não encontrado' })
 
     req.currentUser = user
 
     next()
   } catch (err) {
-    return res.status(401).json({ message: 'The token is invalid.' })
+    return res.status(401).json({ error: 'O token é inválido.' })
   }
 }
 
