@@ -1,6 +1,8 @@
 .transactions {
-  width: 52.5rem;
+  width: 100%;
+  max-width: 52.5rem;
   position: relative;
+  padding: 0 1rem;
 
   &__list {
     max-height: 33rem;

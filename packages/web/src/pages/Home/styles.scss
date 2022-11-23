@@ -1,0 +1,23 @@
+.home {
+  display: flex;
+  max-width: 105rem;
+  margin: 5rem auto;
+
+  @media only screen and (max-width: 56.25em) {
+    flex-direction: column;
+    align-items: center;
+
+    .transactions {
+      margin-top: 5rem;
+    }
+
+    .transfer-fom {
+      margin: auto;
+    }
+  }
+}
+
+.transfer {
+  width: 100%;
+  max-width: 52.5rem;
+}
