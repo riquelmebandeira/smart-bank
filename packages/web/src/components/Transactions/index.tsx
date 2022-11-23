@@ -47,8 +47,10 @@ const Transactions = (): JSX.Element => {
         <Loading />
       ) : (
         <div className="transactions__list mt-xxsmall">
-          {transactions.length < 1 ? (
-            <p>Nenhuma transação foi encontrada</p>
+          {!transactions.length ? (
+            <p className="transactions__feedback">
+              Nenhuma transação foi encontrada.
+            </p>
           ) : (
             transactions.map(t => (
               <TransactionCard
