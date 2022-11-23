@@ -1,6 +1,15 @@
 import axios from 'axios'
 import { UserData } from './UserContext'
 
+export type Transaction = {
+  id: number
+  debitedUser: string
+  creditedUser: string
+  value: number
+  date: string
+  received: boolean
+}
+
 const api = axios.create({
   baseURL: `http://localhost:${process.env.PORT || '3001'}`
 })
@@ -25,6 +34,23 @@ export const register = async (
 
 export const getUserData = async (token: string): Promise<UserData> => {
   const response = await api.get('/user', { headers: { authorization: token } })
+  return response.data
+}
+
+export const getTransactions = async (
+  token: string,
+  category = '',
+  date = ''
+): Promise<Transaction[]> => {
+  let url = '/transaction?'
+  if (category) url += `category=${category}&`
+  if (date) url += `date=${date}`
+
+  console.log(url)
+
+  const response = await api.get(url, {
+    headers: { authorization: token }
+  })
   return response.data
 }
 

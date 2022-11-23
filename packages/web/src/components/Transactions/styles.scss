@@ -1,0 +1,23 @@
+.transactions {
+  width: 52.5rem;
+  position: relative;
+}
+
+.card-list {
+  max-height: 33rem;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    max-width: 1.6rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-gray-2);
+    border-radius: 10rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-purple-6);
+    border-radius: 10rem;
+  }
+}
