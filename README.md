@@ -1,4 +1,4 @@
-# Desafio NG
+# Smart Bank
 
 # Contexto
 
@@ -34,13 +34,13 @@ Funcionalidades:
 1. Clone o repositório:
 
 ```
-git clone git@github.com:riquelmebandeira/desafio-ng.git
+git clone git@github.com:riquelmebandeira/smart-bank.git
 ```
 
 2. Entre na pasta do repositório clonado:
 
 ```
-cd desafio-ng
+cd smart-bank
 ```
 
 3. Suba as aplicações com o comando:
